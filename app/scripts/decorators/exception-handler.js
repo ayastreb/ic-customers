@@ -12,7 +12,11 @@
   /* @ngInject */
   function ExceptionHandler(ErrorStorage) {
     return function (exception) {
-      ErrorStorage.messages.push(exception.message);
+      if (exception instanceof Error) {
+        ErrorStorage.messages.push(exception.message);
+      } else {
+        throw exception;
+      }
     };
   }
 })();
