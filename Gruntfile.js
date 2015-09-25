@@ -392,6 +392,21 @@ module.exports = function (grunt) {
         configFile: 'test/e2e/protractor.conf.js'
       },
       run: {}
+    },
+
+    buildcontrol: {
+      options: {
+        dir: 'dist',
+        commit: true,
+        push: true,
+        message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+      },
+      pages: {
+        options: {
+          remote: 'git@github.com:ayastreb/ic-customers.git',
+          branch: 'gh-pages'
+        }
+      }
     }
   });
 
@@ -447,4 +462,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.loadNpmTasks('grunt-build-control');
 };
