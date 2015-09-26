@@ -69,7 +69,7 @@
                ng-repeat="customer in ctrl.customers | filter: ctrl.distanceLessThen(ctrl.filterDistance) | orderBy: 'id'"
                ng-mouseover="customer.icon = ctrl.blueMarker"
                ng-mouseleave="customer.icon = ctrl.defaultMarker"
-               ng-click="ctrl.centerOnCustomer(customer)">
+               ng-click="ctrl.centerMapOn(customer.location)">
               <span class="badge">{{::customer.distance}} km</span>
               {{::customer.id}}. {{::customer.name}}
             </a>

@@ -17,28 +17,20 @@
     self.defaultMarker = 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png';
     self.greenMarker = 'http://gmapsmarkergenerator.eu01.aws.af.cm/getmarker?scale=1&color=00ff00';
     self.blueMarker = 'http://gmapsmarkergenerator.eu01.aws.af.cm/getmarker?scale=1&color=00ffff';
+    self.map = {
+      center: {latitude: 0, longitude: 0},
+      zoom: 8
+    };
     self.errors = ErrorStorage.messages;
     self.customers = CustomersService.customers;
     self.officeLocation = CustomersService.officeLocation;
     self.filterDistance = 100;
-    self.centerOnCustomer = centerOnCustomer;
+    self.centerMapOn = centerMapOn;
     self.distanceLessThen = distanceLessThan;
 
     uiGmapGoogleMapApi.then(function () {
-      self.map = {
-        center: angular.copy(self.officeLocation),
-        zoom: 8
-      };
+      centerMapOn(self.officeLocation);
     });
-
-    /**
-     * Center map on given customer.
-     *
-     * @param customer
-     */
-    function centerOnCustomer(customer) {
-      self.map.center = angular.copy(customer.location);
-    }
 
     /**
      * Distance filter for customers list.
@@ -50,6 +42,16 @@
       return function (item) {
         return item.distance <= value;
       };
+    }
+
+    /**
+     * Center map on given point.
+     *
+     * @param point
+     */
+    function centerMapOn(point) {
+      self.map.center.latitude = point.latitude;
+      self.map.center.longitude = point.longitude;
     }
   }
 })();
