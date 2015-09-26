@@ -9,7 +9,7 @@
       textParserService = TextParserService;
     }));
 
-    it('throws SyntaxError exception when invalid JSON provided', function () {
+    it('throws Error exception when invalid JSON provided', function () {
       var parseCall = function () {
         textParserService.parseText('{"foo":"broken');
       };
