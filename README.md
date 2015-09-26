@@ -10,6 +10,11 @@ Install NPM
 npm install
 ```
 
+Install Grunt CLI
+```
+npm install -g grunt-cli
+```
+
 Install frontend dependencies
 ```
 bower install
