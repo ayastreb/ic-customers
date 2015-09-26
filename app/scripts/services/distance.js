@@ -68,6 +68,12 @@
       if (!point.hasOwnProperty('longitude')) {
         throw new Error('Missing longitude');
       }
+      if(point.latitude < -90 || point.latitude > 90) {
+        throw new Error('Invalid latitude. Must be in range of -90 to 90');
+      }
+      if(point.longitude < -180 || point.longitude > 180) {
+        throw new Error('Invalid longitude. Must be in range of -180 to 180');
+      }
     }
   }
 
